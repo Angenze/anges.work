@@ -1,0 +1,391 @@
+/* ==========================================================================
+   Ange — anges.work
+   Plain CSS, no build step. Values come from the Figma file.
+   ========================================================================== */
+
+:root {
+  --cream: #ffeecf;      /* page background */
+  --paper: #fff8eb;      /* overlays */
+  --brown: #5d3611;      /* text */
+  --brown-2: #623a14;    /* nav + button text */
+  --yellow: #f2b950;     /* accents */
+  --yellow-dark: #e5a637;
+
+  --font-script: "Grape Nuts", cursive;
+  --font-body: "Istok Web", system-ui, sans-serif;
+
+  --fs-nav: clamp(18px, 2.8vw, 40px);
+  --fs-logo: clamp(48px, 4.9vw, 70px);
+  --fs-title: clamp(34px, 3.5vw, 50px);
+  --fs-body: clamp(17px, 1.75vw, 25px);
+  --fs-date: clamp(15px, 1.4vw, 20px);
+
+  --page-x: clamp(16px, 3.3vw, 47px);
+  --page-y: clamp(20px, 3.1vw, 45px);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--brown);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: 1.2;
+}
+
+img { display: block; max-width: 100%; }
+h1, h2, p { margin: 0; }
+a { color: inherit; }
+button { font: inherit; color: inherit; }
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+:focus-visible { outline: 2px solid var(--brown); outline-offset: 4px; border-radius: 6px; }
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: var(--page-y) var(--page-x);
+  min-height: 100vh;
+}
+
+/* ---------- Header / navigation ---------- */
+
+.site-header {
+  background: var(--cream);
+  padding-top: 20px;
+  z-index: 10;
+}
+.site-header--sticky { position: sticky; top: 0; }
+
+.nav {
+  display: flex;
+  justify-content: center;
+  gap: clamp(8px, 7vw, 102px);
+}
+
+.nav__link {
+  flex: 0 1 306px;
+  min-height: 1.875em; /* 75px at 40px */
+  text-align: center;
+  font-size: var(--fs-nav);
+  color: var(--brown-2);
+  text-decoration: none;
+  opacity: .5;
+  transition: opacity .2s;
+}
+.nav__link:hover { opacity: .8; }
+.nav__link[aria-current="page"] { opacity: 1; }
+
+.nav__label { position: relative; }
+.nav__link[aria-current="page"] .nav__label::after {
+  content: "";
+  position: absolute;
+  left: calc(100% + .15em);
+  top: -.1em;
+  width: 1.26em;
+  height: 1.2em;
+  background: url("../img/star.svg") center / contain no-repeat;
+}
+
+/* ---------- Logo ---------- */
+
+.logo {
+  font-family: var(--font-script);
+  font-weight: 400;
+  font-size: var(--fs-logo);
+  text-align: center;
+  line-height: 1.21;
+}
+
+/* ---------- Painting gallery (About page) ---------- */
+
+.gallery {
+  position: relative;
+  width: 100%;
+  max-width: 1347px;
+  margin-inline: auto;
+  aspect-ratio: 1347 / 607;
+}
+
+.gallery__painting {
+  position: absolute;
+  overflow: hidden;
+}
+.gallery__painting img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.gallery__painting--crop img {
+  position: absolute;
+  max-width: none;
+}
+
+.gallery__frame { position: absolute; display: block; }
+.gallery__frame-img {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+.gallery__frame-img::before {
+  content: "";
+  position: absolute;
+  left: -22.13%;
+  top: -11.22%;
+  width: 146.25%;
+  height: 122.11%;
+  background: url("../img/frame.png") center / 100% 100% no-repeat;
+}
+.gallery__frame--turned .gallery__frame-img {
+  inset: auto;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(-90deg);
+}
+
+a.gallery__frame { transition: filter .2s; }
+a.gallery__frame:hover { filter: brightness(1.12) drop-shadow(0 6px 12px rgba(93, 54, 17, .25)); }
+
+/* ---------- Entries (artworks, collabs, about) ---------- */
+
+.entries { display: flex; flex-direction: column; gap: 30px; }
+
+.entry {
+  display: grid;
+  grid-template-columns: minmax(0, 547px) minmax(0, 589px);
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  padding: 40px 0 22px;
+  scroll-margin-top: 140px;
+}
+
+.entry__media {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  min-height: 519px;
+}
+
+.entry__img {
+  width: min(var(--w, 100%), 100%);
+  height: auto;
+  aspect-ratio: var(--ar);
+  object-fit: cover;
+  object-position: var(--pos, 50% 50%);
+}
+
+.entry__open {
+  display: block;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: zoom-in;
+  width: min(var(--w, 100%), 100%);
+  transition: transform .25s, box-shadow .25s;
+}
+.entry__open .entry__img { width: 100%; }
+.entry__open:hover { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(93, 54, 17, .2); }
+
+.entry__text { display: flex; flex-direction: column; gap: 15px; }
+
+.entry__title {
+  font-family: var(--font-script);
+  font-weight: 400;
+  font-size: var(--fs-title);
+  line-height: 1.22;
+}
+.entry__title button {
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.entry__title button:hover { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 6px; }
+
+.entry__heading { display: flex; flex-direction: column; }
+.entry__date { font-weight: 700; font-size: var(--fs-date); line-height: 1.4; }
+
+.entry__body p + p { margin-top: 0; }
+.entry__body .gap { margin-top: 1.2em; }
+
+/* About section on the home page */
+.entry--about {
+  grid-template-columns: minmax(0, 385px) minmax(0, 519px);
+  padding-inline: 0;
+}
+.entry--about .entry__media { min-height: 0; }
+.entry--about .entry__text { gap: 0; }
+.entry--about .entry__title { line-height: 1.44; }
+
+/* ---------- Footer ---------- */
+
+.site-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 234px;
+}
+
+.to-top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  color: var(--yellow);
+  font-size: var(--fs-body);
+}
+.to-top img { width: 48px; height: 46px; transition: transform .3s; }
+.to-top:hover img { transform: translateY(-4px) rotate(36deg); }
+
+/* ---------- Buttons ---------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  border: 1.5px solid transparent;
+  border-radius: 90px;
+  font-size: var(--fs-body);
+  line-height: 1.2;
+  white-space: nowrap;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color .2s, color .2s;
+}
+.btn--primary { background: var(--yellow); color: var(--brown-2); }
+.btn--primary:hover { background: var(--yellow-dark); }
+.btn--secondary { background: transparent; border-color: var(--brown); color: var(--brown); }
+.btn--secondary:hover { background: var(--brown); color: var(--cream); }
+
+/* ---------- Overlays (dialogs) ---------- */
+
+.modal {
+  width: calc(100% - 32px);
+  max-width: 1346px;
+  max-height: calc(100dvh - 32px);
+  padding: clamp(28px, 4.2vw, 60px) clamp(20px, 6.25vw, 90px);
+  border: 0;
+  border-radius: 30px;
+  background: var(--paper);
+  color: var(--brown);
+  box-shadow: 4px 4px 30px rgba(0, 0, 0, .25);
+  overflow: auto;
+}
+.modal::backdrop { background: rgba(93, 54, 17, .3); }
+.modal[open] { animation: modal-in .25s ease-out; }
+@keyframes modal-in { from { opacity: 0; transform: translateY(12px); } }
+@media (prefers-reduced-motion: reduce) { .modal[open] { animation: none; } }
+
+.modal__close {
+  position: absolute;
+  top: clamp(12px, 2.2vw, 32px);
+  right: clamp(12px, 2.2vw, 32px);
+  padding: 10px 20px;
+  border: 0;
+  border-radius: 90px;
+  background: none;
+  font-size: var(--fs-body);
+  line-height: 1.2;
+  cursor: pointer;
+  z-index: 1;
+}
+.modal__close:hover { background: rgba(93, 54, 17, .08); }
+
+/* Painting overlay: the text wraps beside the picture, then runs full width below it */
+.painting__media {
+  float: left;
+  width: min(547px, 50%);
+  margin: 0 30px 15px 0;
+}
+.painting__media img { width: 100%; height: auto; }
+.painting__heading { display: flex; flex-direction: column; margin-bottom: 15px; padding-right: 48px; }
+.painting__actions { clear: both; padding-top: 15px; }
+
+/* Contact overlay */
+.modal--contact { max-width: 780px; }
+.contact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  text-align: center;
+}
+.contact__intro { display: flex; flex-direction: column; gap: 10px; }
+.contact__hint, .contact__label { font-weight: 700; font-size: var(--fs-date); }
+.contact__field {
+  width: 100%;
+  max-width: 651px;
+  padding: 5px 20px;
+  border: 1.5px solid var(--yellow);
+  border-radius: 90px;
+  background: transparent;
+  color: var(--brown);
+  font: inherit;
+  font-size: var(--fs-body);
+  line-height: 1.5;
+}
+.contact__field::placeholder { color: var(--yellow); opacity: 1; }
+.contact__field:focus { outline: none; border-color: var(--brown); }
+textarea.contact__field { height: 185px; border-radius: 30px; resize: vertical; padding-block: 12px; }
+.contact__status { font-size: var(--fs-date); }
+.contact__status:empty { display: none; }
+
+/* ---------- 404 ---------- */
+
+.not-found {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  text-align: center;
+}
+
+/* ---------- Smaller screens ---------- */
+
+@media (max-width: 860px) {
+  .entry,
+  .entry--about {
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 589px;
+    margin-inline: auto;
+    width: 100%;
+    gap: 20px;
+    padding-top: 20px;
+  }
+  .entry__media { min-height: 0; justify-content: center; }
+  .entry--about .entry__media { justify-content: center; }
+  .modal--painting { padding-top: 64px; }
+  .painting__media { float: none; width: 100%; margin: 0 0 20px; }
+  .painting__heading { padding-right: 0; }
+  .site-footer { min-height: 180px; }
+}
+
+@media (max-width: 520px) {
+  .nav__link[aria-current="page"] .nav__label::after { width: 1em; height: .95em; left: calc(100% + .1em); }
+  .nav { gap: 4px; }
+}

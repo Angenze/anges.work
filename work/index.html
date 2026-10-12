@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ange — Work</title>
+  <meta name="description" content="Paintings and artworks by Ange.">
+  <link rel="canonical" href="https://anges.work/work/">
+  <link rel="icon" href="../assets/img/star.svg" type="image/svg+xml">
+  <meta property="og:title" content="Ange — Work">
+  <meta property="og:image" content="https://anges.work/assets/img/forest-path.jpg">
+  <meta property="og:url" content="https://anges.work/work/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Grape+Nuts&family=Istok+Web:wght@400;700&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <script src="../assets/js/main.js" defer></script>
+</head>
+<body>
+  <div class="page" id="top">
+    <header class="site-header site-header--sticky">
+      <nav class="nav" aria-label="Main">
+        <a class="nav__link" href="../"><span class="nav__label">About Me</span></a>
+        <a class="nav__link" href="../work/" aria-current="page"><span class="nav__label">Work</span></a>
+        <a class="nav__link" href="../collaborations/"><span class="nav__label">Collaborations</span></a>
+      </nav>
+    </header>
+
+    <main class="entries">
+      <h1 class="visually-hidden">Work</h1>
+
+      <!--
+        To add an artwork, copy one <article> block.
+        - id: used in links like /work/#first-artwork
+        - --w / --ar on the image: display width and shape (width/height)
+        - optional <template class="entry__detail">: longer text shown only in the overlay
+      -->
+
+      <article class="entry" id="first-artwork" data-overlay>
+        <div class="entry__media">
+          <button class="entry__open" type="button" data-open-entry style="--w:385px" aria-label="Open First Artwork">
+            <img class="entry__img" src="../assets/img/portrait.jpg" alt="Painting of a young woman with a golden ribbon in her hair" width="385" height="519" style="--ar:385/519" loading="lazy">
+          </button>
+        </div>
+        <div class="entry__text">
+          <div class="entry__heading">
+            <h2 class="entry__title"><button type="button" data-open-entry>First Artwork</button></h2>
+            <p class="entry__date"><time datetime="2026-10-17">17.10.2026</time></p>
+          </div>
+          <div class="entry__body">
+            <p>Here is a text talking about the artwork. Maybe why i painted it, how i felt while painting it, or what inspired me. Here is a bit more Information about the thing that inspired me. Like ab backstory, or something i recently learned.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="entry" id="second-artwork" data-overlay>
+        <div class="entry__media">
+          <button class="entry__open" type="button" data-open-entry style="--w:547px" aria-label="Open Second Artwork">
+            <img class="entry__img" src="../assets/img/forest-path.jpg" alt="Painting of a sunlit forest path" width="547" height="417" style="--ar:548/417" loading="lazy">
+          </button>
+        </div>
+        <div class="entry__text">
+          <div class="entry__heading">
+            <h2 class="entry__title"><button type="button" data-open-entry>Second Artwork</button></h2>
+            <p class="entry__date"><time datetime="2026-10-09">09.10.2026</time></p>
+          </div>
+          <div class="entry__body">
+            <p>Here is a another text talking about the artwork. First, what it shows and why its important for me. Then Maybe why i painted it, how i felt while painting it, or what inspired me. Here is a bit more Information about the thing that inspired me. Like ab backstory, or something i recently learned.</p>
+          </div>
+          <template class="entry__detail">
+            <p>This is a wayyyy more detailed Text about the Artwork. As soon as it gets longer than the artwork it is also supposed to continue under it, in full length of the element.</p>
+            <p>You will soon see it as an example. Because I don’t know what to write anymore i will repeat this Text from here on.</p>
+            <p>This is a wayyyy more detailed Text about the Artwork.</p>
+            <p>Now you can see how the Text is supposed to continue as soon as it is longer than Paintings height (with titel. date and text).</p>
+            <p>This is a wayyyy more detailed Text about the Artwork. As soon as it gets longer than the artwork it is also supposed to continue under it, in full length of the element.</p>
+            <p>You will soon see it as an example. Because I don’t know what to write anymore i will repeat this Text from here on. This is a wayyyy more detailed Text about the Artwork.</p>
+          </template>
+        </div>
+      </article>
+
+      <article class="entry" id="third-artwork" data-overlay>
+        <div class="entry__media">
+          <button class="entry__open" type="button" data-open-entry style="--w:381px" aria-label="Open Third Artwork">
+            <img class="entry__img" src="../assets/img/mirror.jpg" alt="Painting of a woman in white at a mirror" width="381" height="519" style="--ar:381/519" loading="lazy">
+          </button>
+        </div>
+        <div class="entry__text">
+          <div class="entry__heading">
+            <h2 class="entry__title"><button type="button" data-open-entry>Third Artwork</button></h2>
+            <p class="entry__date"><time datetime="2026-07-17">17.07.2026</time></p>
+          </div>
+          <div class="entry__body">
+            <p>Here is a another text talking about the artwork. First, what it shows and why its important for me. Then Maybe why i painted it, how i felt while painting it, or what inspired me.</p>
+            <p>This text is not that long though</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="entry" id="next-artwork" data-overlay>
+        <div class="entry__media">
+          <button class="entry__open" type="button" data-open-entry style="--w:546px" aria-label="Open Next Artwork">
+            <img class="entry__img" src="../assets/img/reading-woman.jpg" alt="Painting of a woman in a hat reading in the grass" width="546" height="507" style="--ar:546/507;--pos:0% 50%" loading="lazy">
+          </button>
+        </div>
+        <div class="entry__text">
+          <div class="entry__heading">
+            <h2 class="entry__title"><button type="button" data-open-entry>Next Artwork</button></h2>
+            <p class="entry__date"><time datetime="2025-12-05">05.12.2025</time></p>
+          </div>
+          <div class="entry__body">
+            <p>Here is a another text talking about the artwork. First, what it shows and why its important for me. Then Maybe why i painted it, how i felt while painting it, or what inspired me.</p>
+            <p>This text is not that long though</p>
+          </div>
+        </div>
+      </article>
+    </main>
+
+    <footer class="site-footer">
+      <button class="to-top" type="button" data-scroll-top>
+        <img src="../assets/img/star.svg" alt="" width="48" height="46">
+        <span>Go Back Up</span>
+      </button>
+      <button class="btn btn--primary" type="button" data-open-contact>Contact me</button>
+    </footer>
+  </div>
+</body>
+</html>
