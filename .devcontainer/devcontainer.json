@@ -1,0 +1,12 @@
+{
+  "name": "anges.work",
+  "image": "mcr.microsoft.com/devcontainers/python:1-3.12-bookworm",
+  "forwardPorts": [8000],
+  "portsAttributes": {
+    "8000": {
+      "label": "anges.work preview",
+      "onAutoForward": "openBrowser"
+    }
+  },
+  "postStartCommand": "python3 -m http.server 8000 --bind 0.0.0.0 > /tmp/anges-work-preview.log 2>&1 &"
+}

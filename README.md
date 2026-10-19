@@ -48,3 +48,12 @@ All paths are relative, so either works:
   ```
 
   then visit http://localhost:8000.
+
+## Draft and publish with GitHub Codespaces
+
+1. On GitHub, create a branch for your draft, then open the repository in a Codespace on that branch.
+2. Edit the HTML, CSS, images, or JavaScript. Codespaces starts a preview server and opens the forwarded port; if it does not open automatically, use the **Ports** panel and open port `8000` in your browser.
+3. Save your changes and refresh the preview to review them. The preview runs from your Codespace and does not publish the site.
+4. When you are satisfied, commit and push the branch, then open and merge a pull request into `main`. GitHub Pages publishes the `main` branch using the repository's Pages settings above. Changes on other branches stay drafts.
+
+The Codespaces setup is in `.devcontainer/devcontainer.json`.
